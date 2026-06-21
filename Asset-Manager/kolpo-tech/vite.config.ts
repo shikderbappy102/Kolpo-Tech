@@ -34,12 +34,12 @@ export default defineConfig({
   root: path.resolve(__dirname),
 
   build: {
-  outDir: path.resolve(__dirname, "dist"),
-  emptyOutDir: true,
-  sourcemap: false,
-  minify: "esbuild",
-  chunkSizeWarningLimit: 2000
-}
+    outDir: path.resolve(__dirname, "dist"),
+    emptyOutDir: true,
+    sourcemap: false,
+    minify: "esbuild",
+    chunkSizeWarningLimit: 2000
+  },
 
   server: {
     port,

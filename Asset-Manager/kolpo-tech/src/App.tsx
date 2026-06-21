@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,7 +7,6 @@ import NotFound from "@/pages/not-found";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CatPeek from "@/components/cat-peek";
-
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import About from "@/pages/about";
@@ -18,10 +17,27 @@ import CompliAIDemo from "@/pages/demo/compliai";
 
 const queryClient = new QueryClient();
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto"
+    });
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <div className="flex min-h-[100dvh] flex-col">
+      <ScrollToTop />
+
       <Navbar />
+
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
@@ -34,6 +50,7 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </main>
+
       <Footer />
       <CatPeek />
     </div>
